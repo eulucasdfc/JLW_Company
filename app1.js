@@ -50,7 +50,7 @@ const App = () => {
     <View style={styles.container}>
       <Text style={styles.empresa}>JLW Company</Text>
 
-      <Image source={require('./imagens/logo.jpg')} style={styles.logo} />
+      <Image source={require('./imagens/jlw.png')} style={styles.jlw} />
       <Text style={styles.label}>Cadastramento de Clientes</Text>
       
       <TextInput
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     alignItems: 'center',
+    backgroundColor: 'grey',
   },
   empresa: {
     fontFamily: "helvetica",
@@ -142,10 +143,10 @@ const styles = StyleSheet.create({
     marginTop: 30,
   
   },
-  logo: {
+  jlw: {
     marginTop: 20,
-    width: 100,
-    height: 100,
+    width: 250,
+    height: 55,
     marginBottom: 10,
   },
   label: {

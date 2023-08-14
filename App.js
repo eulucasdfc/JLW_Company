@@ -41,7 +41,7 @@ const App = () => {
 
   const equipe = [
     { nome: 'Jenifer Carvalho', matricula: '202103406734' },
-    { nome: 'Lucas França', matricula: '202102286115' },
+    { nome: 'Lucas de França', matricula: '202102286115' },
     { nome: 'Wagner Mesquita', matricula: '202003315338' },
 
   ];

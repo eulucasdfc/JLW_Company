@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, ScrollView, Image, StyleSheet, Button } from 'react-native';
+//import { Button } from 'react-native-web';
 
 const App = () => {
+  const showAlert = () =>{
+    window.alert('Dados Enviados')};
+
   const [matricula, setMatricula] = useState('');
   const [nome, setNome] = useState('');
   const [logradouro, setLogradouro] = useState('');
@@ -10,10 +14,6 @@ const App = () => {
   const [cep, setCep] = useState('');
   const [cidade, setCidade] = useState('');
   const [uf, setUf] = useState('');
-
-  const matInteira = () => {
-    setMat(parseInt(matricula))
-  }
 
   // Essa função remove quaisquer caracter que não seja número
   const handleMatriculaChange = (text) => {
@@ -45,6 +45,7 @@ const App = () => {
     { nome: 'Wagner Mesquita', matricula: '202003315338' },
 
   ];
+
 
   return (
     <View style={styles.container}>
@@ -113,8 +114,10 @@ const App = () => {
         onChangeText={setUf}
         style={styles.input}
       />
+      
+      <Button title="Enviar" onPress={showAlert}/>
 
-      <Text>Membros do Trabalho</Text>
+      <Text><br/>Membros do Trabalho</Text>
 
       <ScrollView style={styles.scrollView}>
         {equipe.map((membro, index) => (
@@ -135,13 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  empresa: {
-    fontFamily: "helvetica",
-    fontSize: 40,
-    fontWeight: 'normal',
-    marginTop: 30,
-  
-  },
+
   jlw: {
     marginTop: 20,
     width: 250,

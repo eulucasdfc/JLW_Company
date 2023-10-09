@@ -43,7 +43,7 @@ const equipe = [
       
             <View style={[styles.container, { backgroundColor: 'white' }]}>
             <Image source={require('./imagens/areadocliente.gif')} style={styles.areadocliente} />
-            <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
+            <View style={{flexDirection: 'row', alignSelf: 'flex-end'}}>
             <TextInput
               style={[styles.input, { flex: 0.5 }]} // Ajuste o valor flex para aumentar a largura do campo
               placeholder="Usuário"
@@ -66,17 +66,20 @@ const equipe = [
 
             <Image source={require('./imagens/jlw2.jpg')} style={styles.jlw} />
             <Text style={[styles.label, { marginBottom: 10, marginTop: 10, textAlign: 'center' }]}> 
-            SISTEMA DE CONTROLE DE FORNECEDORES E PRODUTOS DA JLW COMPANY
-            </Text> 
+            <br/>SISTEMA DE CONTROLE DE FORNECEDORES E PRODUTOS DA JLW COMPANY<br/><br/>
+            </Text><br/> 
             <Image source={require('./imagens/quemsomos.gif')} style={styles.gif} />
-            <Text style={[styles.label1, { marginBottom: 10, marginTop: 10, textAlign: 'left' }]}> 
-            DETALHAR QUEM SOMOS
+            <Text style={[styles.label1, { marginBottom: 10, textAlign: 'left', marginTop: 20, width: '90%'}]}> 
+            <br/>Nossa empresa é recente no mundo da tecnologia, começando a entrar no mercado de especialização no desenvolvimento de aplicativos com interfaces intuitivas e de fácil uso. Nosso objetivo primordial é criar experiências que sejam simultaneamente leves e sofisticadas, visando proporcionar o máximo de conforto e eficiência para nossos colaboradores e usuários.
+            <br/><br/>Além disso, flexibilidade é um dos nossos pilares. Reconhecemos a importância de atender às necessidades e demandas específicas, fazendo com que assim cada aplicativo seja unicamente exclusivo para cada cliente.
             </Text>
-            <Image source={require('./imagens/missao.gif')} style={styles.gif} />
-            <Text style={[styles.label1, { marginBottom: 10, marginTop: 10, textAlign: 'left' }]}> 
-            DETALHAR A MISSÃO DA EMPRESA
+            <br/><Image source={require('./imagens/missao.gif')} style={styles.gif} />
+            <Text style={[styles.label1, { marginBottom: 10, textAlign: 'left', marginTop: 20, width: '90%'}]}><br/>
+            Nossa missão é capacitar pessoas e organizações por meio da tecnologia, proporcionando-lhes soluções que simplificam suas vidas e maximizam seu potencial. 
+            Buscamos incessantemente criar aplicativos que transcendam a mera funcionalidade, almejando impactar positivamente a experiência cotidiana dos usuários.
+            <br/><br/>Acreditamos no poder da colaboração e da personalização. Estamos empenhados em trabalhar lado a lado com nossos clientes, entendendo suas necessidades específicas, expectativas e visões, para moldar produtos que se integrem perfeitamente à sua realidade. Nossa flexibilidade nos permite ajustar e adaptar soluções, garantindo que cada projeto atenda de forma excepcional às exigências individuais.
             </Text>
-            <Text><br/>Membros do Trabalho</Text>
+            <Text style={{fontStyle: 'italic', fontSize: 15}}><br/><br/>Membros do Trabalho</Text>
             <ScrollView style={styles.scrollView}>
                 {equipe.map((membro, index) => (
                 <View key={index} style={styles.membroEquipe}>
@@ -85,7 +88,7 @@ const equipe = [
                 </View>
         ))}
         </ScrollView>
-        <Text style={[styles.label1, { marginBottom: 10, marginTop: 10, textAlign: 'left' }]}> 
+        <Text style={[styles.label2, { marginBottom: 10, marginTop: 10, textAlign: 'left' }]}> 
         ©2023 JLW COMPANY | TODOS OS DIREITOS RESERVADOS.
         </Text>        
         </View>
@@ -124,11 +127,18 @@ const styles = StyleSheet.create ({
       marginBottom: 10,
     },
     label: {
-      fontSize: 20,
+      fontStyle: 'italic',
+      fontSize: 23,
       marginBottom: 20,
       marginTop: 10, 
     },
     label1: {
+      textAlign: 'justify',
+      fontSize: 20,
+      marginBottom: 20,
+      marginTop: 10, 
+    },
+    label2: {
       fontSize: 15,
       marginBottom: 20,
       marginTop: 10, 
@@ -144,7 +154,7 @@ const styles = StyleSheet.create ({
     },
     scrollView: {
       marginTop: 20,
-      width: '100%',
+      width: '90%',
     },
     membroEquipe: {
       borderWidth: 1,

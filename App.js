@@ -5,7 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './login';
 import Cadastro from './cadastro';
 
+
 const Stack = createStackNavigator();
+
 
 const App = () => {
   return (
@@ -14,6 +16,7 @@ const App = () => {
       <Stack.Navigator initialRouteName = "Login">
         <Stack.Screen name = "Login" component={Login}/>
         <Stack.Screen name = "Cadastro" component = {Cadastro}/>
+
         </Stack.Navigator>
         
     </NavigationContainer>

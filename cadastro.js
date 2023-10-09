@@ -6,6 +6,7 @@ import { Picker } from 'react-native-web';
 
 const Stack = createStackNavigator(); 
 
+
 const ufsBrasil = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
 const armazenamento = ['UNID','CX'];
 
@@ -91,7 +92,7 @@ const Cadastro = ({navigation}) => {
     <View style={styles.container}>
     
       <Image source={require('./imagens/jlw2.jpg')} style={styles.jlw} />
-      <Image source={require('./imagens/fornecedores.gif')} style={styles.gif} />
+      <Image source={require('./imagens/fornecedores.gif')} style={styles.gif} /><br/>
       
       <TextInput
         placeholder="CNPJ (somente números e campo obrigatório)"
@@ -156,7 +157,7 @@ const Cadastro = ({navigation}) => {
         ))}
       </Picker>
 
-      <Image source={require('./imagens/produtos.gif')} style={styles.gif} />
+      <Image source={require('./imagens/produtos.gif')} style={styles.gif} /><br/>
 
       <TextInput
         placeholder="Produto (campo obrigatório)"
@@ -194,7 +195,7 @@ const Cadastro = ({navigation}) => {
 
       <Button title="Enviar" onPress={handleSubmit}/>
 
-      <Text><br/>Membros do Trabalho</Text>
+      <Text style={{fontStyle: 'italic', fontSize: 15}}><br/><br/>Membros do Trabalho</Text>
 
       <ScrollView style={styles.scrollView}>
         {equipe.map((membro, index) => (
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginTop: 20,
-    width: '100%',
+    width: '90%',
   },
   membroEquipe: {
     borderWidth: 1,

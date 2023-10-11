@@ -14,13 +14,19 @@ const Cadastro = ({navigation}) => {
   //FORNECEDORES
     const [CNPJ, setCNPJ] = useState('');
     const [razaosocial, setRazaoSocial] = useState('');
+    const [email, setEmail] = useState('');
+    const [representante, setRepresentante] = useState('');
+    const [celular, setCelular] = useState('');
     const [cep, setCep] = useState('');
     const [endereco, setEndereco] = useState('');
     const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState('');
     const [bairro, setBairro] = useState('');
     const [cidade, setCidade] = useState('');
     const [uf, setUf] = useState(''); 
     const [produto, setProduto] = useState('');
+    const [codigodebarras, setCodigodebarras] = useState('');
+    const [preco, setPreco] = useState('');
     const [qtd_produto, setQtd_Produto] = useState('');
     const [unid_armazenamento, setUnid_Armazenamento] = useState('');
     const [qtd_caixas, setQtd_Caixas] = useState('');
@@ -28,16 +34,8 @@ const Cadastro = ({navigation}) => {
   const showAlert = () =>{
     window.alert('Cadastro efetuado com sucesso')};
 
-
-  // Essa função remove quaisquer caracter que não seja número
-  const handleCNPJChange = (text) => {
-  
-    const numericText = text.replace(/[^0-9]/g, ''); 
-    setCNPJ(numericText);
-  };
-
   const handleSubmit = () => {
-    if (!CNPJ||!razaosocial||!uf||!produto||!qtd_produto||!unid_armazenamento) {
+    if (!CNPJ||!razaosocial||!uf||!produto||!qtd_produto||!unid_armazenamento||!email||!representante||!cep) {
       // Os campos obrigatórios estão vazios, exibir uma mensagem de erro ou tomar a ação apropriada
       alert('Por favor preencher todos os campos obrigatórios.');
       return;
@@ -49,12 +47,26 @@ const Cadastro = ({navigation}) => {
         window.location.reload();
       }, 2000);
     };
+
+  // Essa função remove quaisquer caracter que não seja número
+  const handleCNPJChange = (text) => {
   
+    const numericText = text.replace(/[^0-9]/g, ''); 
+    setCNPJ(numericText);
+  };
+  
+  // Essa função remove quaisquer caracter que não seja número
+  const handleCelularChange = (text) => {
+  
+    const numericText = text.replace(/[^0-9]/g, '');
+    setCelular(numericText);
+  }; 
+    
   // Essa função remove quaisquer caracter que não seja número
   const handleCepChange = (text) => {
   
-    const CepText = text.replace(/[^0-9]/g, '');
-    setCep(CepText);
+    const numericText = text.replace(/[^0-9]/g, '');
+    setCep(numericText);
   };
 
   // Essa função remove quaisquer caracter que não seja número
@@ -69,6 +81,20 @@ const Cadastro = ({navigation}) => {
   
     const numericText = text.replace(/[^0-9]/g, '');
     setQtd_Produto(numericText);
+  };
+
+  // Essa função remove quaisquer caracter que não seja número
+  const handleCodigodebarrasChange = (text) => {
+  
+    const numericText = text.replace(/[^0-9]/g, '');
+    setCodigodebarras(numericText);
+  };
+
+  // Essa função remove quaisquer caracter que não seja número
+  const handlePrecoChange = (text) => {
+  
+    const numericText = text.replace(/[^0-9,]/g, '');
+    setPreco(numericText);
   };
 
   // Essa função remove quaisquer caracter que não seja número
@@ -91,11 +117,11 @@ const Cadastro = ({navigation}) => {
   return (
     <View style={styles.container}>
     
-      <Image source={require('./imagens/jlw2.jpg')} style={styles.jlw} />
+      <Image source={require('./imagens/tech.png')} style={styles.tech} />
       <Image source={require('./imagens/fornecedores.gif')} style={styles.gif} /><br/>
       
       <TextInput
-        placeholder="CNPJ (somente números e campo obrigatório)"
+        placeholder="CNPJ (Somente números e Campo obrigatório)"
         value={CNPJ}
         onChangeText={handleCNPJChange}
         keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
@@ -103,14 +129,33 @@ const Cadastro = ({navigation}) => {
       />
 
       <TextInput
-        placeholder="Razão Social (campo obrigatório)"
+        placeholder="Razão Social (Campo obrigatório)"
         value={razaosocial}
         onChangeText={setRazaoSocial}
         style={styles.input}
       />
-
+       <TextInput
+        placeholder="E-mail (Campo obrigatório)"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+      />       
       <TextInput
-        placeholder="CEP"
+      placeholder="Representante (Campo obrigatório)"
+      value={representante}
+      onChangeText={setRepresentante}
+      style={styles.input}
+      />
+      <TextInput
+      placeholder="Número para contato (Campo obrigatório)"
+      value={celular}
+      onChangeText={handleCelularChange}
+      keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
+      style={styles.input}
+      />
+      <br/><br/>
+      <TextInput
+        placeholder="CEP (Somente números e Campo obrigatório)"
         value={cep}
         onChangeText={handleCepChange}
         keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
@@ -130,7 +175,14 @@ const Cadastro = ({navigation}) => {
         onChangeText={handleNumeroChange}
         keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
         style={styles.input}
-      />     
+      />
+
+      <TextInput
+      placeholder="Complemento"
+      value={complemento}
+      onChangeText={setComplemento}
+      style={styles.input}
+      />         
 
       <TextInput
         placeholder="Bairro"
@@ -160,14 +212,30 @@ const Cadastro = ({navigation}) => {
       <Image source={require('./imagens/produtos.gif')} style={styles.gif} /><br/>
 
       <TextInput
-        placeholder="Produto (campo obrigatório)"
+        placeholder="Produto (Campo obrigatório)"
         value={produto}
         onChangeText={setProduto}
         style={styles.input}
       />
 
       <TextInput
-        placeholder="Quantidade (campo obrigatório)"
+        placeholder="Código de Barras (Somente número e Campo obrigatório)"
+        value={codigodebarras}
+        onChangeText={handleCodigodebarrasChange}
+        keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
+        style={styles.input}
+      />
+
+      <TextInput
+        placeholder="Preço (Somente número e Campo obrigatório)"
+        value={preco}
+        onChangeText={handlePrecoChange}
+        keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
+        style={styles.input}
+      />
+
+      <TextInput
+        placeholder="Quantidade (Campo obrigatório)"
         value={qtd_produto}
         onChangeText={handleQtd_ProdutoChange}
         keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
@@ -179,7 +247,7 @@ const Cadastro = ({navigation}) => {
         onValueChange={(itemValue, itemIndex) => setUnid_Armazenamento(itemValue)}
         style={styles.input}
         >
-        <Picker.Item label="Unidade (campo obrigatório)" value="" />
+        <Picker.Item label="Unidade (Campo obrigatório)" value="" />
         {armazenamento.map((item, index) => (
           <Picker.Item key={index} label={item} value={item} />
         ))}
@@ -219,10 +287,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  jlw: {
+  tech: {
     marginTop: 20,
-    width: 250,
-    height: 55,
+    width: 400,
+    height: 150,
     marginBottom: 10,
   },
   gif: {

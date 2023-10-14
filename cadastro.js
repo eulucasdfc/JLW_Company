@@ -7,105 +7,130 @@ import { Picker } from 'react-native-web';
 const Stack = createStackNavigator(); 
 
 
-const ufsBrasil = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
+const UF_BRASIL = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
 const armazenamento = ['UNID','CX'];
 
 const Cadastro = ({navigation}) => {
   //FORNECEDORES
-    const [CNPJ, setCNPJ] = useState('');
-    const [razaosocial, setRazaoSocial] = useState('');
-    const [email, setEmail] = useState('');
-    const [representante, setRepresentante] = useState('');
-    const [celular, setCelular] = useState('');
-    const [cep, setCep] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [numero, setNumero] = useState('');
-    const [complemento, setComplemento] = useState('');
-    const [bairro, setBairro] = useState('');
-    const [cidade, setCidade] = useState('');
-    const [uf, setUf] = useState(''); 
-    const [produto, setProduto] = useState('');
-    const [codigodebarras, setCodigodebarras] = useState('');
-    const [preco, setPreco] = useState('');
-    const [qtd_produto, setQtd_Produto] = useState('');
-    const [unid_armazenamento, setUnid_Armazenamento] = useState('');
-    const [qtd_caixas, setQtd_Caixas] = useState('');
+    const [CNPJ, InsiraCNPJ] = useState('');
+    const [RAZAOSOCIAL, InsiraRAZAOSOCIAL] = useState('');
+    const [EMAIL, InsiraEMAIL] = useState('');
+    const [REPRESENTANTE, InsiraREPRESENTANTE] = useState('');
+    const [CELULAR, InsiraCELULAR] = useState('');
+    const [CEP, InsiraCEP] = useState('');
+    const [ENDEREÇO, InsiraENDEREÇO] = useState('');
+    const [NUMERO, InsiraNUMERO] = useState('');
+    const [COMPLEMENTO, InsiraCOMPLEMENTO] = useState('');
+    const [BAIRRO, InsiraBAIRRO] = useState('');
+    const [CIDADE, InsiraCIDADE] = useState('');
+    const [UF, InsiraUF] = useState(''); 
+    const [PRODUTO, InsiraPRODUTO] = useState('');
+    const [CODIGO_BARRAS, InsiraCODIGO_BARRAS] = useState('');
+    const [PREÇO, InsiraPREÇO] = useState('');
+    const [QTD_PRODUTO, InsiraQTD_PRODUTO] = useState('');
+    const [UNID_ARMAZENAMENTO, InsiraUNID_ARMAZENAMENTO] = useState('');
+    const [QTD_CAIXAS, InsiraQTD_CAIXAS] = useState('');
+    const [TOTAL_PRODUTOS, InsiraTotalPRODUTO] = useState('');
 
-  const showAlert = () =>{
+  const MostrarAlerta = () =>{
     window.alert('Cadastro efetuado com sucesso')};
 
-  const handleSubmit = () => {
-    if (!CNPJ||!razaosocial||!uf||!produto||!qtd_produto||!unid_armazenamento||!email||!representante||!cep) {
-      // Os campos obrigatórios estão vazios, exibir uma mensagem de erro ou tomar a ação apropriada
+  const VerificarEnvio = () => {
+    if (!CNPJ||!RAZAOSOCIAL||!UF||!PRODUTO||!QTD_PRODUTO||!UNID_ARMAZENAMENTO||!EMAIL||!REPRESENTANTE||!CEP) {
       alert('Por favor preencher todos os campos obrigatórios.');
       return;
     }
-       // Impede o envio do formulário se os campos obrigatórios não tiverem preenchidos
-      showAlert();
+      // Impede o envio do formulário se os campos obrigatórios não tiverem preenchidos
+      MostrarAlerta();
       //Atualizar a página automaticamente e volta para a tela de login como medida de segurança
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1500);
     };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handleCNPJChange = (text) => {
+
+  // Essas funções removem qualquer caracter que não seja NUMERO do (1 ao 8)
+  //(1)
+  const CriterioCNPJ = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, ''); 
-    setCNPJ(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, ''); 
+    InsiraCNPJ(textonumerico);
   };
   
-  // Essa função remove quaisquer caracter que não seja número
-  const handleCelularChange = (text) => {
+  //(2)
+  const CriterioCELULAR = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setCelular(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraCELULAR(textonumerico);
   }; 
     
-  // Essa função remove quaisquer caracter que não seja número
-  const handleCepChange = (text) => {
+  //(3)
+  const CriterioCEP = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setCep(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraCEP(textonumerico);
   };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handleNumeroChange = (text) => {
+  //(4)
+  const CriterioNUMERO = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setNumero(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraNUMERO(textonumerico);
   };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handleQtd_ProdutoChange = (text) => {
+  //(5)
+  const CriterioQTD_PRODUTO = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setQtd_Produto(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraQTD_PRODUTO(textonumerico);
+    calcularTOTAL_PRODUTOS(PREÇO, text);
   };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handleCodigodebarrasChange = (text) => {
+  //(6)
+  const CriterioCodigodebarra = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setCodigodebarras(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraCODIGO_BARRAS(textonumerico);
   };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handlePrecoChange = (text) => {
+  //(7) *Aqui a vírgula é permitido
+  const CriterioPREÇO = (text) => {
   
-    const numericText = text.replace(/[^0-9,]/g, '');
-    setPreco(numericText);
+    const textonumerico = text.replace(/[^0-9,]/g, '');
+    InsiraPREÇO(textonumerico);
+    calcularTOTAL_PRODUTOS(text, QTD_PRODUTO);
   };
 
-  // Essa função remove quaisquer caracter que não seja número
-  const handleQtd_CaixaChange = (text) => {
+  //(8)
+  const CriterioQtd_caixa = (text) => {
   
-    const numericText = text.replace(/[^0-9]/g, '');
-    setQtd_Caixas(numericText);
+    const textonumerico = text.replace(/[^0-9]/g, '');
+    InsiraQTD_CAIXAS(textonumerico);
   };
 
+  //Essa função calcula o preço total (QTD_PRODUTO *preço)
+  const calcularTOTAL_PRODUTOS = (PREÇO, QTD_PRODUTO) => {
+    if (PREÇO && QTD_PRODUTO) {
+      // Substitui vírgulas por pontos
+      const PREÇOComPonto = PREÇO.replace(',', '.');
+      const QtdComPonto = QTD_PRODUTO.replace(',', '.');
+      
+      // Realiza o cálculo com os valores substituídos
+      const resultadoCalculado = parseFloat(PREÇOComPonto) * parseFloat(QtdComPonto);
+      
+      // Formata o resultado com vírgula em vez de ponto
+      const resultadoFormatado = resultadoCalculado.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+  
+      InsiraTotalPRODUTO(resultadoFormatado);
+    } else {
+      InsiraTotalPRODUTO(''); // Reset do cálculo se os campos estiverem vazios
+    }
+  };
+ 
   // Informações sobre integrantes do trabalho
-
   const equipe = [
     { nome: 'Jenifer Carvalho', matricula: '202103406734' },
     { nome: 'Lucas de França', matricula: '202102286115' },
@@ -123,128 +148,130 @@ const Cadastro = ({navigation}) => {
       <TextInput
         placeholder="CNPJ (Somente números e Campo obrigatório)"
         value={CNPJ}
-        onChangeText={handleCNPJChange}
+        onChangeText={CriterioCNPJ}
         keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
         style={styles.input}
       />
 
       <TextInput
         placeholder="Razão Social (Campo obrigatório)"
-        value={razaosocial}
-        onChangeText={setRazaoSocial}
+        value={RAZAOSOCIAL}
+        onChangeText={InsiraRAZAOSOCIAL}
         style={styles.input}
       />
        <TextInput
         placeholder="E-mail (Campo obrigatório)"
-        value={email}
-        onChangeText={setEmail}
+        value={EMAIL}
+        onChangeText={InsiraEMAIL}
         style={styles.input}
       />       
       <TextInput
       placeholder="Representante (Campo obrigatório)"
-      value={representante}
-      onChangeText={setRepresentante}
+      value={REPRESENTANTE}
+      onChangeText={InsiraREPRESENTANTE}
       style={styles.input}
       />
       <TextInput
       placeholder="Número para contato (Campo obrigatório)"
-      value={celular}
-      onChangeText={handleCelularChange}
+      value={CELULAR}
+      onChangeText={CriterioCELULAR}
       keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
       style={styles.input}
       />
       <br/><br/>
       <TextInput
         placeholder="CEP (Somente números e Campo obrigatório)"
-        value={cep}
-        onChangeText={handleCepChange}
+        value={CEP}
+        onChangeText={CriterioCEP}
         keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
         style={styles.input}
       />
 
       <TextInput
         placeholder="Endereço"
-        value={endereco}
-        onChangeText={setEndereco}
+        value={ENDEREÇO}
+        onChangeText={InsiraENDEREÇO}
         style={styles.input}
       />
 
       <TextInput
         placeholder="Número (somente números)"
-        value={numero}
-        onChangeText={handleNumeroChange}
+        value={NUMERO}
+        onChangeText={CriterioNUMERO}
         keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
         style={styles.input}
       />
 
       <TextInput
       placeholder="Complemento"
-      value={complemento}
-      onChangeText={setComplemento}
+      value={COMPLEMENTO}
+      onChangeText={InsiraCOMPLEMENTO}
       style={styles.input}
       />         
 
       <TextInput
         placeholder="Bairro"
-        value={bairro}
-        onChangeText={setBairro}
+        value={BAIRRO}
+        onChangeText={InsiraBAIRRO}
         style={styles.input}
       />
 
       <TextInput
         placeholder="Cidade"
-        value={cidade}
-        onChangeText={setCidade}
+        value={CIDADE}
+        onChangeText={InsiraCIDADE}
         style={styles.input}
       />
 
       <Picker
-        selectedValue={uf}
-        onValueChange={(itemValue, itemIndex) => setUf(itemValue)}
+        selectedValue={UF}
+        onValueChange={(itemValue, itemIndex) => InsiraUF(itemValue)}
         style={styles.input}
         >
         <Picker.Item label="UF (campo obrigatório)" value="" />
-        {ufsBrasil.map((item, index) => (
+        {UF_BRASIL.map((item, index) => (
           <Picker.Item key={index} label={item} value={item} />
         ))}
       </Picker>
 
-      <Image source={require('./imagens/produtos.gif')} style={styles.gif} /><br/>
+      <Image source={require('./imagens/PRODUTOs.gif')} style={styles.gif} /><br/>
 
       <TextInput
-        placeholder="Produto (Campo obrigatório)"
-        value={produto}
-        onChangeText={setProduto}
+        placeholder="Insira o Produto (Campo obrigatório)"
+        value={PRODUTO}
+        onChangeText={InsiraPRODUTO}
         style={styles.input}
       />
 
       <TextInput
         placeholder="Código de Barras (Somente número e Campo obrigatório)"
-        value={codigodebarras}
-        onChangeText={handleCodigodebarrasChange}
+        value={CODIGO_BARRAS}
+        onChangeText={CriterioCodigodebarra}
         keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
         style={styles.input}
       />
 
       <TextInput
         placeholder="Preço (Somente número e Campo obrigatório)"
-        value={preco}
-        onChangeText={handlePrecoChange}
-        keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
+        value={PREÇO}
+        onChangeText={CriterioPREÇO}
+        keyboardType="numeric"
         style={styles.input}
       />
 
       <TextInput
         placeholder="Quantidade (Campo obrigatório)"
-        value={qtd_produto}
-        onChangeText={handleQtd_ProdutoChange}
-        keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
+        value={QTD_PRODUTO}
+        onChangeText={CriterioQTD_PRODUTO}
+        keyboardType="numeric"
         style={styles.input}
       />
+      
+      <br/><br/><Text style={{fontSize: 20}}> Total de Custo do Produto: {TOTAL_PRODUTOS ? `R$ ${TOTAL_PRODUTOS}` : 'Insira preço e quantidade'}</Text><br/><br/>
 
       <Picker
-        selectedValue={unid_armazenamento}
-        onValueChange={(itemValue, itemIndex) => setUnid_Armazenamento(itemValue)}
+        selectedValue={UNID_ARMAZENAMENTO}
+        onValueChange={(itemValue, itemIndex) => InsiraUNID_ARMAZENAMENTO(itemValue)}
         style={styles.input}
         >
         <Picker.Item label="Unidade (Campo obrigatório)" value="" />
@@ -255,13 +282,13 @@ const Cadastro = ({navigation}) => {
 
       <TextInput
         placeholder="Quantidade de caixas"
-        value={qtd_caixas}
-        onChangeText={handleQtd_CaixaChange}
+        value={QTD_CAIXAS}
+        onChangeText={CriterioQtd_caixa}
         keyboardType='numeric' // Componente para garantir que apareça o teclado númerico
         style={styles.input}
       />
 
-      <Button title="Enviar" onPress={handleSubmit}/>
+      <Button title="Enviar" onPress={VerificarEnvio}/>
 
       <Text style={{fontStyle: 'italic', fontSize: 15}}><br/><br/>Membros do Trabalho</Text>
 

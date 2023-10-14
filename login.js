@@ -24,7 +24,7 @@ const handleLogin = () => {
   const user = users.find((user) => user.username === username && user.password === password);
 
   if (user) {
-    navigation.navigate('Cadastro'); // Navegue para a tela de Cadastro
+    navigation.navigate('Cadastro | Tech One Two'); // Navegue para a tela de Cadastro
     // Limpe os campos de entrada de dados
     setUsername('');
     setPassword('');

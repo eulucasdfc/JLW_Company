@@ -11,16 +11,14 @@ const App = () => {
   return (
     
     <NavigationContainer>
-      <Stack.Navigator initialRouteName = "Login">
-        <Stack.Screen name = "Login" component={Login}/>
-        <Stack.Screen name = "Cadastro" component = {Cadastro}/>
+      <Stack.Navigator initialRouteName = "JLW Company">
+        <Stack.Screen name = "JLW Company" component={Login}/>
+        <Stack.Screen name = "Cadastro | Tech One Two" component = {Cadastro}/>
         </Stack.Navigator>
         
     </NavigationContainer>
     
-    
   );
-  
 };
 
 export default App;

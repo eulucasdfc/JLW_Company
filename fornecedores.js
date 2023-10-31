@@ -10,6 +10,7 @@ const UF_BRASIL = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', '
 
 const Fornecedores = ({navigation}) => {
   //FORNECEDORES
+    const [ID, InsiraID] = useState('');
     const [CNPJ, InsiraCNPJ] = useState('');
     const [RAZAOSOCIAL, InsiraRAZAOSOCIAL] = useState('');
     const [EMAIL, InsiraEMAIL] = useState('');
@@ -88,6 +89,12 @@ const Fornecedores = ({navigation}) => {
     const textonumerico = text.replace(/[^0-9]/g, '');
     InsiraNUMERO(textonumerico);
   };
+  //(5)
+  const CriterioID = (text) => {
+  
+    const textonumerico = text.replace(/[^0-9]/g, ''); 
+    InsiraID(textonumerico);
+  };
  
   // Informações sobre integrantes do trabalho
   const equipe = [
@@ -97,13 +104,20 @@ const Fornecedores = ({navigation}) => {
 
   ];
 
-
   return (
     <View style={styles.container}>
     
       <Image source={require('./imagens/tech.png')} style={styles.tech} />
       <Image source={require('./imagens/fornecedores.gif')} style={styles.gif} /><br/>
       
+      <TextInput
+        placeholder="ID (Somente números e Campo obrigatório)"
+        value={ID}
+        onChangeText={CriterioID}
+        keyboardType="numeric" // Componente para garantir que apareça o teclado númerico
+        style={styles.input}
+      />
+
       <TextInput
         placeholder="CNPJ (Somente números e Campo obrigatório)"
         value={CNPJ}
@@ -212,16 +226,7 @@ const Fornecedores = ({navigation}) => {
         <Text style={styles.buttonText}>Cadastrar Fornecedor</Text>
       </TouchableOpacity>
 
-      <Text style={{fontStyle: 'italic', fontSize: 15}}><br/><br/>Membros do Trabalho</Text>
-
-      <ScrollView style={styles.scrollView}>
-        {equipe.map((membro, index) => (
-          <View key={index} style={styles.membroEquipe}>
-            <Text>{membro.nome}</Text>
-            <Text>{membro.matricula}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <br/>
       <Text style={[styles.label1, { marginBottom: 10, marginTop: 10, textAlign: 'left' }]}> 
         ©2023 JLW COMPANY | TODOS OS DIREITOS RESERVADOS.
       </Text>    
@@ -262,10 +267,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
-  },
-  scrollView: {
-    marginTop: 20,
-    width: '90%',
+    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)',
   },
   membroEquipe: {
     borderWidth: 1,
@@ -277,6 +279,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)',
   },
   buttonText: {
     fontSize: 18,

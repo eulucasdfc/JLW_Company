@@ -11,15 +11,15 @@ const Stack = createStackNavigator();
 
 const App = () => {
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="JLW Company" component={Login}/>
-        <Stack.Screen name="Página Inicial | Tech One Two" component={Home} />
-        <Stack.Screen name="Cadastro Fornecedor | Tech One Two" component={Fornecedores} />
-        <Stack.Screen name="Cadastro Produtos | Tech One Two" component={Produtos} />
-      </Stack.Navigator>
-    </NavigationContainer>
+return (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="JLW Company" component={Login}/>
+      <Stack.Screen name="Página Inicial | Tech One Two" component={Home} />
+      <Stack.Screen name="Cadastro Fornecedor | Tech One Two" component={Fornecedores} />
+      <Stack.Screen name="Cadastro Produtos | Tech One Two" component={Produtos} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
 

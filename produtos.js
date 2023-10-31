@@ -9,6 +9,7 @@ const armazenamento = ['UNID', 'CX'];
 
 const Produtos = ({ navigation }) => {
   // PRODUTOS
+  const [ID, InsiraID] = useState('');
   const [PRODUTO, InsiraPRODUTO] = useState('');
   const [CODIGO_BARRAS, InsiraCODIGO_BARRAS] = useState('');
   const [PREÇO, InsiraPREÇO] = useState('');
@@ -58,6 +59,12 @@ const Produtos = ({ navigation }) => {
     const textonumerico = text.replace(/[^0-9]/g, '');
     InsiraQTD_CAIXAS(textonumerico);
   };
+  //(5)
+  const CriterioID = (text) => {
+  
+    const textonumerico = text.replace(/[^0-9]/g, ''); 
+    InsiraID(textonumerico);
+    };
 
   // Essa função calcula o preço total (QTD_PRODUTO * preço)
   const calcularTOTAL_PRODUTOS = (PREÇO, QTD_PRODUTO) => {
@@ -89,84 +96,82 @@ const Produtos = ({ navigation }) => {
   ];
 
   return (
-    <View style={styles.container}>
-      <Image source={require('./imagens/tech.png')} style={styles.tech} />
-      <Image source={require('./imagens/PRODUTOs.gif')} style={styles.gif} /><br/>
+<View style={styles.container}>
+  <Image source={require('./imagens/tech.png')} style={styles.tech} />
+  <Image source={require('./imagens/produtos.gif')} style={styles.gif} /><br/>
+  
+  <TextInput
+    placeholder="ID (Campo obrigatório)"
+    value={ID}
+    onChangeText={CriterioID}
+    style={styles.input} // Estilo para o campo de texto
+  />
+  
+  <TextInput
+    placeholder="Insira o Produto (Campo obrigatório)"
+    value={PRODUTO}
+    onChangeText={InsiraPRODUTO}
+    style={styles.input} // Estilo para o campo de texto
+  />
 
-      <TextInput
-        placeholder="Insira o Produto (Campo obrigatório)"
-        value={PRODUTO}
-        onChangeText={InsiraPRODUTO}
-        style={styles.input} // Estilo para o campo de texto
-      />
+  <TextInput
+    placeholder="Código de Barras (Somente números e Campo obrigatório)"
+    value={CODIGO_BARRAS}
+    onChangeText={CriterioCodigodebarra}
+    keyboardType="numeric"
+    style={styles.input}
+  />
 
-      <TextInput
-        placeholder="Código de Barras (Somente números e Campo obrigatório)"
-        value={CODIGO_BARRAS}
-        onChangeText={CriterioCodigodebarra}
-        keyboardType="numeric"
-        style={styles.input}
-      />
+  <TextInput
+    placeholder="Preço (Somente números e Campo obrigatório)"
+    value={PREÇO}
+    onChangeText={CriterioPREÇO}
+    keyboardType="numeric"
+    style={styles.input}
+  />
 
-      <TextInput
-        placeholder="Preço (Somente números e Campo obrigatório)"
-        value={PREÇO}
-        onChangeText={CriterioPREÇO}
-        keyboardType="numeric"
-        style={styles.input}
-      />
+  <TextInput
+    placeholder="Quantidade (Campo obrigatório)"
+    value={QTD_PRODUTO}
+    onChangeText={CriterioQTD_PRODUTO}
+    keyboardType="numeric"
+    style={styles.input}
+  />
 
-      <TextInput
-        placeholder="Quantidade (Campo obrigatório)"
-        value={QTD_PRODUTO}
-        onChangeText={CriterioQTD_PRODUTO}
-        keyboardType="numeric"
-        style={styles.input}
-      />
+  <br/><br/><Text style={{ fontSize: 20 }}> Total de Custo do Produto: {TOTAL_PRODUTOS ? `${TOTAL_PRODUTOS}` : 'Insira preço e quantidade'}</Text><br/><br/>
 
-      <br/><br/><Text style={{ fontSize: 20 }}> Total de Custo do Produto: {TOTAL_PRODUTOS ? `R$ ${TOTAL_PRODUTOS}` : 'Insira preço e quantidade'}</Text><br/><br/>
+  <Picker
+    selectedValue={UNID_ARMAZENAMENTO}
+    onValueChange={(itemValue, itemIndex) => InsiraUNID_ARMAZENAMENTO(itemValue)}
+    style={styles.input}
+  >
+    <Picker.Item label="Unidade (Campo obrigatório)" value="" />
+    {armazenamento.map((item, index) => (
+      <Picker.Item key={index} label={item} value={item} />
+    ))}
+  </Picker>
 
-      <Picker
-        selectedValue={UNID_ARMAZENAMENTO}
-        onValueChange={(itemValue, itemIndex) => InsiraUNID_ARMAZENAMENTO(itemValue)}
-        style={styles.input}
-      >
-        <Picker.Item label="Unidade (Campo obrigatório)" value="" />
-        {armazenamento.map((item, index) => (
-          <Picker.Item key={index} label={item} value={item} />
-        ))}
-      </Picker>
+  <TextInput
+    placeholder="Quantidade de caixas"
+    value={QTD_CAIXAS}
+    onChangeText={CriterioQtd_caixa}
+    keyboardType="numeric"
+    style={styles.input}
+  />
+  <View style={{ marginVertical: 10 }} />
 
-      <TextInput
-        placeholder="Quantidade de caixas"
-        value={QTD_CAIXAS}
-        onChangeText={CriterioQtd_caixa}
-        keyboardType="numeric"
-        style={styles.input}
-      />
-      <View style={{ marginVertical: 10 }} />
-
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#007bff' }]}
-        onPress={VerificarEnvio}
-      >
-        <Text style={styles.buttonText}>Cadastrar Produto</Text>
-      </TouchableOpacity>
-
-      <Text style={{ fontStyle: 'italic', fontSize: 15 }}><br/><br/>Membros do Trabalho</Text>
-
-      <ScrollView style={styles.scrollView}>
-        {equipe.map((membro, index) => (
-          <View key={index} style={styles.membroEquipe}>
-            <Text>{membro.nome}</Text>
-            <Text>{membro.matricula}</Text>
-          </View>
-        ))}
-      </ScrollView>
-      <Text style={{ marginBottom: 10, marginTop: 10, textAlign: 'left' }}>
-        ©2023 JLW COMPANY | TODOS OS DIREITOS RESERVADOS.
-      </Text>
-    </View>
+  <TouchableOpacity
+    style={[styles.button, { backgroundColor: '#007bff' }]}
+    onPress={VerificarEnvio}
+  >
+    <Text style={styles.buttonText}>Cadastrar Produto</Text>
+  </TouchableOpacity>
+  
+  <br/>
+  <Text style={{ marginBottom: 10, marginTop: 10, textAlign: 'left' }}>
+    ©2023 JLW COMPANY | TODOS OS DIREITOS RESERVADOS.
+  </Text>
+</View>
   );
 };
 
@@ -203,10 +208,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
-  },
-  scrollView: {
-    marginTop: 20,
-    width: '90%',
+    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)',
   },
   membroEquipe: {
     borderWidth: 1,
@@ -218,6 +220,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)',
   },
   buttonText: {
     fontSize: 18,
